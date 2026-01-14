@@ -1,13 +1,24 @@
-provider "aws"{
-region = "ap-southeast-1"
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "6.26.0"
+    }
+  }
 }
 
-resource "aws_instance" "AWSEC2INSTANCE"{
-ami = "ami-0c56f26c1d3277bcb"
-instance_type = "t2.micro"
-key_name = "mithuntechnologiesdevops"
-security_groups = ["launch-wizard-2"]
-tags = {
-Name = "terraformserver"
+provider "aws" {
+  region  = "us-east-1"
+  profile = "default"
 }
+
+resource "aws_instance" "AWSEC2Instance" {
+  ami             = "ami-07ff62358b87c7116"
+  instance_type   = "t2.micro"
+  key_name        = "abdul.pem"
+  security_groups = ["launch-wizard-7"]
+
+  tags = {
+    Name = "TerraformServer"
+  }
 }
